@@ -1,5 +1,5 @@
 UPDATE 11/2022:
-The initial CVKT code was developed using the Pymanopt version availavle at that time. With the current stable release, its syntax has changed majorly. The changes in CVKT reflect the current Pymanopt syntax. The old version remains as "cvkt_helpers_old.py". 
+The initial CVKT code was developed using the Pymanopt version available at that time. With the current stable release, its syntax has changed majorly. The changes in CVKT reflect the current Pymanopt syntax. The old version remains as "cvkt_helpers_old.py". 
 
 
 =======================================
