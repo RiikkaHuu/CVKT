@@ -1,7 +1,6 @@
 import numpy as np
-import pymanopt
 from pymanopt.manifolds import Sphere
-from pymanopt.optimizers import SteepestDescent
+from pymanopt.solvers import SteepestDescent
 from pymanopt import Problem
 
 """
@@ -96,25 +95,23 @@ def solve_cvkt(Ktarget, Psi, rank):
 
     manifold = Sphere(a, rank)
 
-    @pymanopt.function.numpy(manifold)
     def Uloss(U):
 
         align = alignment_cvkt(Psi, Ktarget, U)
 
         return - align  # we want to maximize alignment, Pymanopt minimizes everything
 
-    @pymanopt.function.numpy(manifold)
     def Ugrad(U):
 
         deriv = derivative_alignment_cvkt(Psi, Ktarget, U)
 
         return - deriv
 
-    problem = Problem(manifold=manifold, cost=Uloss, euclidean_gradient=Ugrad)
+    problem = Problem(manifold=manifold, cost=Uloss, verbosity=0, egrad=Ugrad)
 
-    problemsolver = SteepestDescent(max_iterations=200, verbosity=0)
+    problemsolver = SteepestDescent(maxiter=200)
 
-    U = problemsolver.run(problem, initial_point=Uinit).point
+    U = problemsolver.solve(problem, x=Uinit)
 
     return U
 

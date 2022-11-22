@@ -102,9 +102,9 @@ def cvkt_complete_one_view(K, MID, view, approx_lvl, rank_lvl, normalize=True):
 
     print("solving cvkt for view "+str(view)+"...", end="")
     sys.stdout.flush()
-    ttt = time.clock()
+    ttt = time.process_time()
     U = solve_cvkt(k_target, psi, rank)
-    print(" solved!  "+str(timedelta(seconds=time.clock()-ttt)))
+    print(" solved!  "+str(timedelta(seconds=time.process_time()-ttt)))
     sys.stdout.flush()
 
     # predict the full kernel
